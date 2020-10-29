@@ -1,0 +1,78 @@
+<mvc:View controllerName="com.yash.ptg.employee_dashboard.Assignment5.controller.EmployeeDashboard" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>employeeDashboard}">
+					<l:VerticalLayout width="100%">
+						<fb:FilterBar reset="onReset" search="onSearch" showRestoreButton="true" showClearButton="true">
+							<fb:filterGroupItems>
+								<fb:FilterGroupItem groupName="__$INTERNAL$" name="employeeId" label="Employee Id" labelTooltip="{i18n>employeeDashboard}"
+									partOfCurrentVariant="true" visibleInFilterBar="true">
+									<fb:control>
+										<Input type="Text"/>
+									</fb:control>
+								</fb:FilterGroupItem>
+								<fb:FilterGroupItem groupName="__$INTERNAL$" name="city" label="City" labelTooltip="{i18n>employeeDashboard}" partOfCurrentVariant="true"
+									visibleInFilterBar="true">
+									<fb:control>
+										<ComboBox items="{employeeModel>/Employees}" change="onFilterCity">
+											<core:Item key="{employeeModel>EmployeeID}" text="{employeeModel>City}"/>
+										</ComboBox>
+									</fb:control>
+								</fb:FilterGroupItem>
+								<fb:FilterGroupItem groupName="__$INTERNAL$" name="country" label="Country" labelTooltip="{i18n>employeeDashboard}"
+									partOfCurrentVariant="true" visibleInFilterBar="true">
+									<fb:control>
+										<ComboBox items="{employeeModel>/Employees}" change="onFilterCountry">
+											<core:Item key="{employeeModel>Country}" text="{employeeModel>Country}"/>
+										</ComboBox>
+									</fb:control>
+								</fb:FilterGroupItem>
+								<fb:FilterGroupItem groupName="__$INTERNAL$" name="region" label="Region" labelTooltip="{i18n>employeeDashboard}"
+									partOfCurrentVariant="true" visibleInFilterBar="true">
+									<fb:control>
+										<ComboBox items="{employeeModel>/Employees}" change="onFilterRegion">
+											<core:Item key="{employeeModel>Region}" text="{employeeModel>Region}"/>
+										</ComboBox>
+									</fb:control>
+								</fb:FilterGroupItem>
+							</fb:filterGroupItems>
+						</fb:FilterBar>
+					</l:VerticalLayout>
+					<Table showSeparators="All" id="idEmployeeList" inset="false" items="{ path: 'employeeModel>/Employees'}" backgroundDesign="Solid">
+						<columns>
+							<Column hAlign="Left">
+								<Text text="{i18n>employeeId}"/>
+							</Column>
+							<Column hAlign="Left">
+								<Text text="{i18n>name}"/>
+							</Column>
+							<Column hAlign="Left">
+								<Text text="{i18n>etitle}"/>
+							</Column>
+							<Column hAlign="Left">
+								<Text text="{i18n>country}"/>
+							</Column>
+							<Column hAlign="Left">
+								<Text text="{i18n>hiredate}"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem press="onEmployeePress" type="Active" id="idColumnListItem">
+								<cells>
+									<ObjectIdentifier title="{employeeModel>EmployeeID}"/>
+									<Text text="{employeeModel>FirstName} {employeeModel>LastName}"/>
+									<Text text="{employeeModel>Title}"/>
+									<Text text="{employeeModel>Country}"/>
+									<Text text="{ path: 'employeeModel>HireDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'full' } }"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+					<content></content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

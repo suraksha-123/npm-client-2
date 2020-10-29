@@ -1,0 +1,51 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:l="sap.ui.layout"
+	controllerName="com.yash.ptg.employee_dashboard.Assignment5.controller.OrderDetails" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="Order '{OrderID}'" showNavButton="true" navButtonPress="onBack">
+				<l:VerticalLayout width="100%">
+					<fb:FilterBar reset="onReset" search="onSearch" showRestoreButton="true" showClearButton="true">
+						<fb:filterGroupItems>
+							<fb:FilterGroupItem groupName="__$INTERNAL$" name="productId" label="Product Id" labelTooltip="Order Details" partOfCurrentVariant="true"
+								visibleInFilterBar="true">
+								<fb:control>
+									<!--<Input id="idProduct" type="Text"/>-->
+									<ComboBox items="{/Order_Details}" change="onFilterProductID">
+										<core:Item key="{ProductID}" text="{ProductID}"/>
+									</ComboBox>
+								</fb:control>
+							</fb:FilterGroupItem>
+						</fb:filterGroupItems>
+					</fb:FilterBar>
+				</l:VerticalLayout>
+				<Table showSeparators="All" id="idOrderList" items="{/Order_Details}" backgroundDesign="Solid">
+					<columns>
+						<Column hAlign="Left">
+							<Text text="{i18n>productId}"/>
+						</Column>
+						<Column hAlign="Left">
+							<Text text="{i18n>unitId}"/>
+						</Column>
+						<Column hAlign="Left">
+							<Text text="{i18n>quantity}"/>
+						</Column>
+						<Column hAlign="Left">
+							<Text text="{i18n>discount}"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem press="onProductPress" type="Active">
+							<cells>
+								<ObjectIdentifier title="{ProductID}"/>
+								<Text text="{UnitPrice}"/>
+								<Text text="{Quantity}"/>
+								<Text text="{Discount}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+				
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

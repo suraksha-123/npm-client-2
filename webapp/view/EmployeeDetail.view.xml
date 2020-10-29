@@ -1,0 +1,176 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m" xmlns="sap.uxap" xmlns:l="sap.ui.layout"
+	xmlns:fb="sap.ui.comp.filterbar" xmlns:f="sap.ui.layout.form" xmlns:fa="sap.f"
+	controllerName="com.yash.ptg.employee_dashboard.Assignment5.controller.EmployeeDetail">
+	<m:Page showNavButton="true" navButtonPress="onBack" id="idEmployeeDetailPage">
+		<ObjectPageLayout id="ObjectPageLayout" enableLazyLoading="true" useIconTabBar="true" showTitleInHeaderContent="false">
+			<headerTitle>
+				<ObjectPageDynamicHeaderTitle>
+					<actions>
+						<m:OverflowToolbarButton icon="sap-icon://pull-down" text="show section" type="Emphasized" tooltip="pull-down"/>
+						<m:OverflowToolbarButton icon="sap-icon://show" text="show state" type="Emphasized" tooltip="show"/>
+					</actions>
+				</ObjectPageDynamicHeaderTitle>
+			</headerTitle>
+			<headerContent>
+				<l:HorizontalLayout>
+					<fa:Avatar class="sapUiSmallMarginEnd" src="./test-resources/sap/uxap/images/imageID_275314.png" displaySize="L"></fa:Avatar>
+					<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+						<l:HorizontalLayout>
+							<m:Label text="{i18n>employeeName}"></m:Label>
+							<m:Text text="{FirstName} {LastName}"/>
+						</l:HorizontalLayout>
+						<l:HorizontalLayout>
+							<m:Label text="{i18n>etitle} : "></m:Label>
+							<m:Text text="{Title}"/>
+						</l:HorizontalLayout>
+						<l:HorizontalLayout>
+							<m:Label text="{i18n>phoneNo}"></m:Label>
+							<m:Link text="{HomePhone}"/>
+						</l:HorizontalLayout>
+					</l:VerticalLayout>
+					<l:VerticalLayout>
+						<l:HorizontalLayout>
+							<m:Label text="{i18n>country} : "></m:Label>
+							<m:Text text="{Country}"/></l:HorizontalLayout>
+					</l:VerticalLayout>
+				</l:HorizontalLayout>
+			</headerContent>
+			<sections>
+				<ObjectPageSection id="idEmpInfo" title="{i18n>empInfo}">
+					<subSections>
+						<ObjectPageSubSection>
+							<blocks>
+								<m:VBox class="sapUiSmallMargin">
+									<m:Bar>
+										<m:contentRight>
+											<m:Button id="edit" text="{i18n>edit}" press="handleEditPress" type="Emphasized"/>
+											<m:Button id="save" text="{i18n>save}" type="Emphasized" visible="false" press="handleSavePress"/>
+											<m:Button id="cancel" text="{i18n>cancel}" type="Emphasized" visible="false" press="handleCancelPress"/>
+										</m:contentRight>
+									</m:Bar>
+								</m:VBox>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+				<ObjectPageSection id="idOrder" title="{i18n>orders}">
+					<subSections>
+						<ObjectPageSubSection id="pOrder">
+							<blocks>
+								<l:VerticalLayout>
+									<fb:FilterBar reset="onReset" search="onSearchOrders" showRestoreButton="true" showClearButton="true">
+										<fb:filterGroupItems>
+											<fb:FilterGroupItem groupName="__$INTERNAL$" name="orderId" label="Order ID" labelTooltip="Orders" partOfCurrentVariant="true"
+												visibleInFilterBar="true">
+												<fb:control>
+													<m:ComboBox items="{/Orders}" change="onFilterOrderID">
+														<core:Item key="{OrderID}" text="{OrderID}"/>
+													</m:ComboBox>
+												</fb:control>
+											</fb:FilterGroupItem>
+											<fb:FilterGroupItem groupName="__$INTERNAL$" name="customerId" label="Customer ID" labelTooltip="Orders" partOfCurrentVariant="true"
+												visibleInFilterBar="true">
+												<fb:control>
+													<m:ComboBox items="{/Orders}" change="onFilterCustomerID">
+														<core:Item key="{CustomerID}" text="{CustomerID}"/>
+													</m:ComboBox>
+												</fb:control>
+											</fb:FilterGroupItem>
+											<fb:FilterGroupItem groupName="__$INTERNAL$" name="shipVia" label="Ship Via" labelTooltip="Orders" partOfCurrentVariant="true"
+												visibleInFilterBar="true">
+												<fb:control>
+													<m:ComboBox items="{/Orders}" change="onFilterShipVias">
+														<core:Item key="{ShipVia}" text="{ShipVia}"/>
+													</m:ComboBox>
+												</fb:control>
+											</fb:FilterGroupItem>
+										</fb:filterGroupItems>
+									</fb:FilterBar>
+									<m:Table showSeparators="All" id="idOrderList" inset="false" items="{/Orders}" backgroundDesign="Solid">
+										<m:columns>
+											<m:Column hAlign="Left">
+												<m:Text text="{i18n>orderId}"/>
+											</m:Column>
+											<m:Column hAlign="Left">
+												<m:Text text="{i18n>customerID}"/>
+											</m:Column>
+											<m:Column hAlign="Left">
+												<m:Text text="{i18n>shipVia}"/>
+											</m:Column>
+											<m:Column hAlign="Left">
+												<m:Text text="{i18n>shipName}"/>
+											</m:Column>
+											<m:Column hAlign="Left">
+												<m:Text text="{i18n>frieght}"/>
+											</m:Column>
+											<m:Column hAlign="Left">
+												<m:Text text="{i18n>shipCountry}"/>
+											</m:Column>
+										</m:columns>
+										<m:items>
+											<m:ColumnListItem type="Active" press="onOrderPress">
+												<m:cells>
+													<m:ObjectIdentifier title="{OrderID}"/>
+													<m:Link text="{CustomerID}" press="handleLinkCustomer"/>
+													<m:Link text="{ShipVia}" press="handleLinkShip"/>
+													<m:Text text="{ShipName}"/>
+													<m:Text text="{Freight}"/>
+													<m:Text text="{ShipCountry}"/>
+												</m:cells>
+											</m:ColumnListItem>
+										</m:items>
+									</m:Table>
+								</l:VerticalLayout>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+				<ObjectPageSection id="idTerritory" title="{i18n>territories}">
+					<subSections>
+						<ObjectPageSubSection id="pTerritory">
+							<blocks>
+								<l:VerticalLayout>
+									<fb:FilterBar reset="onReset" search="onSearchTerritory" showRestoreButton="true" showClearButton="true">
+										<fb:filterGroupItems>
+											<fb:FilterGroupItem groupName="__$INTERNAL$" name="territoryId" label="Territory Id" labelTooltip="Territory" partOfCurrentVariant="true"
+												visibleInFilterBar="true">
+												<fb:control>
+													<m:ComboBox items="{/Territories}" change="onFilterTerritories">
+														<core:Item key="{TerritoryID}" text="{TerritoryID}"/>
+													</m:ComboBox>
+												</fb:control>
+											</fb:FilterGroupItem>
+										</fb:filterGroupItems>
+									</fb:FilterBar>
+									<m:Table showSeparators="All" id="idTerritoryList" inset="false" items="{/Territories}" backgroundDesign="Solid">
+										<m:columns>
+											<m:Column hAlign="Left">
+												<m:Text text="{i18n>territoryId}"/>
+											</m:Column>
+											<m:Column hAlign="Left">
+												<m:Text text="{i18n>territoryDescription}"/>
+											</m:Column>
+											<m:Column hAlign="Left">
+												<m:Text text="{i18n>region}"/>
+											</m:Column>
+										</m:columns>
+										<m:items>
+											<m:ColumnListItem type="Active">
+												<m:cells>
+													<m:ObjectIdentifier title="{TerritoryID}"/>
+													<m:Text text="{TerritoryDescription}"/>
+													<m:Text text="{RegionID}"/>
+												</m:cells>
+											</m:ColumnListItem>
+										</m:items>
+									</m:Table>
+								</l:VerticalLayout>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+			</sections>
+		
+		</ObjectPageLayout>
+	</m:Page>
+</mvc:View>

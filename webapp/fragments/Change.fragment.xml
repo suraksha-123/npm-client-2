@@ -1,0 +1,46 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m" xmlns="sap.uxap" xmlns:l="sap.ui.layout"
+	xmlns:fb="sap.ui.comp.filterbar" xmlns:f="sap.ui.layout.form">
+	<ObjectPageSubSection>
+		<m:HBox>
+			<f:SimpleForm editable="false" columnsL="3">
+				<f:content>
+					<core:Title text="{i18n>personalDetails}"/>
+					<m:Label text="Name"/>
+					<m:Input value="{FirstName} {LastName}"/>
+					<m:Label text="{i18n>title}"/>
+					<m:Input value="{Title}"/>
+					<m:Label text="{i18n>titleOfCourtesy}"/>
+					<m:Input value="{TitleOfCourtesy}"/>
+					<m:Label text="{i18n>hiredate}"/>
+					<m:Input value="{ path: 'HireDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'full' } }"/>
+					<m:Label text="{i18n>birthDate}"/>
+					<m:Input value="{ path: 'BirthDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'full' } }"/>
+				</f:content>
+			</f:SimpleForm>
+			<f:SimpleForm editable="false" columnsL="3">
+				<f:content>
+					<core:Title text="{i18n>addressDetails}"/>
+					<m:Label text="{i18n>address}"/>
+					<m:Input value="{Address}"/>
+					<m:Label text="{i18n>city}"/>
+					<m:Input value="{City}"/>
+					<m:Label text="{i18n>region}"/>
+					<m:Input value="{Region}"/>
+					<m:Label text="{i18n>postalCode}"/>
+					<m:Input value="{PostalCode}"/>
+					<m:Label text="{i18n>country}"/>
+					<m:Input value="{Country}"/>
+				</f:content>
+			</f:SimpleForm>
+			<f:SimpleForm editable="false" columnsL="3">
+				<f:content>
+					<core:Title text="{i18n>contactDetails}"/>
+					<m:Label text="{i18n>homePhone}"/>
+					<m:Input value="{HomePhone}"/>
+					<m:Label text="{i18n>extension}"/>
+					<m:Input value="{Extension}"/>
+				</f:content>
+			</f:SimpleForm>
+		</m:HBox>
+	</ObjectPageSubSection>
+</core:FragmentDefinition>
