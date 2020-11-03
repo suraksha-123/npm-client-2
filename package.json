@@ -8,7 +8,6 @@
   },
   "scripts": {
     "build": "ui5 build --clean-dest --include-task=generateManifestBundle generateCachebusterInfo"
-    "test": "qunit"
   },
   "ui5": {
     "dependencies": [
