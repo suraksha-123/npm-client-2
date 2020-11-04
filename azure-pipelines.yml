@@ -17,5 +17,5 @@ steps:
 
 - script: |
     npm install --global @ui5/cli
-    npm run build
+    sudo ui5 build
   displayName: 'npm install and build'
